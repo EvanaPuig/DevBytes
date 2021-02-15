@@ -31,16 +31,16 @@ interface VideoDao {
 }
 
 @Database(entities = [DatabaseVideo::class], version = 1)
-abstract class VideoDatabase(): RoomDatabase() {
+abstract class VideosDatabase: RoomDatabase() {
     abstract val videoDao: VideoDao
 }
 
-private lateinit var INSTANCE: VideoDatabase
+private lateinit var INSTANCE: VideosDatabase
 
-fun getDatabase(context: Context): VideoDatabase {
+fun getDatabase(context: Context): VideosDatabase {
     if(!::INSTANCE.isInitialized) {
         Room.databaseBuilder(context.applicationContext,
-        VideoDatabase::class.java,
+        VideosDatabase::class.java,
         "videos").build()
     }
     return INSTANCE
